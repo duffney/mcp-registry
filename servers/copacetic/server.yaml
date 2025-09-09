@@ -1,0 +1,28 @@
+name: copacetic
+image: mcp/copacetic
+type: server
+meta:
+    category: devops
+    tags:
+        - devops
+about:
+    title: Copacetic
+    description: Copacetic unofficial MCP server
+    icon: https://avatars.githubusercontent.com/u/8146181?v=4
+source:
+    project: https://github.com/duffney/copacetic-mcp
+run:
+    volumes:
+        - ${env:HOME}/.docker/config.json:/root/.docker/config.json
+        - ${env:HOME}/.docker/config.json:/var/run/docker.sock
+config:
+    description: Configure the connection to Copacetic
+    env:
+        - name: DOCKER_HOST
+          example: unix:///var/run/docker.sock
+          value: '{{copacetic.docker_host}}'
+    parameters:
+        type: object
+        properties:
+            dockerhost:
+                type: string
